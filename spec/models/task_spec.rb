@@ -24,8 +24,8 @@ RSpec.describe Task, type: :model do
   it "タイトルが重複していたら無効なこと" do
     user = create(:user)
     task = create(:task, user: user)
-    task1 = build(:task, user: user)
-    task1.valid?
-    expect(task1.errors[:title]).to include("has already been taken")
+    another_task = build(:task, user: user)
+    another_task.valid?
+    expect(another_task.errors[:title]).to include("has already been taken")
   end
 end

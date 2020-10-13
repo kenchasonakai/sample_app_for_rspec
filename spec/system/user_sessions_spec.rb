@@ -1,4 +1,4 @@
-		describe "ログイン" do
+		describe "ログイン前" do
 			context 'フォームの入力値が正常な場合' do
 				let(:user) { create(:user) }
 				it 'ログインが成功する' do
@@ -22,3 +22,13 @@
 			end
 		end
 
+		describe 'ログイン後' do
+    	context 'ログアウトボタンをクリック' do
+				let(:user) { create(:user) }
+				before { login(user) }
+      	it 'ログアウト処理が成功する' do
+					click_link "Logout"
+					expect(page).to have_content "Logged out"
+				end
+   		 end
+  end

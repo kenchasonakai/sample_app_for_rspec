@@ -51,29 +51,6 @@ RSpec.describe "Users", type: :system do
       end
 		end
 
-		describe "ログイン" do
-			context 'フォームの入力値が正常な場合' do
-				let(:user) { create(:user) }
-				it 'ログインが成功する' do
-					visit login_path
-					fill_in "Email", with: user.email
-					fill_in "Password", with: "password"
-					click_button "Login"
-					expect(page).to have_content "Login successful"
-				end
-			end
-
-			context '登録されていないパスワードを入力した場合' do
-				let(:user) { create(:user) }
-				it 'ログインが失敗する' do
-					visit login_path
-					fill_in "Email", with: user.email
-					fill_in "Password", with: "wrongpassword"
-					click_button "Login"
-					expect(page).to have_current_path login_path
-				end
-			end
-		end
   end
 
   describe 'ログイン後' do
@@ -119,7 +96,13 @@ RSpec.describe "Users", type: :system do
       end
 
       context '他ユーザーの編集ページにアクセスしようとした場合' do
-        it '編集ページへのアクセスが失敗する'
+				let(:user) { create(:user) }
+				let(:another_user) { create(:another_user) }
+				before { login(user) }
+        it '編集ページへのアクセスが失敗する' do
+					visit edit_user_path(another_user)
+					expect(page).to have_current_path user_path(user)
+				end
       end
     end
 

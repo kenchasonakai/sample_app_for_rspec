@@ -1,4 +1,5 @@
 # This file overrides https://github.com/bbatsov/rubocop/blob/master/config/default.yml
+require: rubocop-rspec
 
 AllCops:
   Exclude:
@@ -64,4 +65,28 @@ Style/WhileUntilModifier:
   Enabled: false
 
 Bundler/OrderedGems:
+  Enabled: false
+
+#ネストの上限
+RSpec/NestedGroups:
+  Enabled: false
+
+#contextの書き方の制限
+RSpec/ContextWording:
+  Enabled: false
+
+#exampleの書き方の制限
+RSpec/ExampleWording:
+  Enabled: false
+
+#subjectに関連した名前をつける制限
+RSpec/NamedSubject:
+  Enabled: false
+
+#1個のテスト(it)の行数制限
+RSpec/ExampleLength:
+  Max: 10
+
+#let使用の推奨の制限
+RSpec/InstanceVariable:
   Enabled: false

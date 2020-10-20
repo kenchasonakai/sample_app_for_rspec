@@ -105,20 +105,5 @@ RSpec.describe "Users", type: :system do
 				end
       end
     end
-
-    describe 'マイページ' do
-      context 'タスクを作成' do
-        it '新規作成したタスクが表示される'
-      end
-
-#			context 'ログインしている状態' do
-#				let(:user) { create (:user) }
-#				before { login(user) }
-#					it 'マイページへのアクセスが成功する' do
-#						visit user_path(user)
-#						expect(page).to have_content "Email: #{user.email}"
-#					end
-#			end
     end
   end
-end

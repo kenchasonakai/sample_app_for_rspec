@@ -11,7 +11,7 @@ RSpec.describe 'UserSessions', type: :system do
         fill_in 'Password', with: 'password'
         click_button 'Login'
         expect(page).to have_content 'Login successful'
-			  expect(current_path).to eq root_path
+        expect(page).to have_current_path root_path, ignore_query: true
       end
     end
 
@@ -24,7 +24,7 @@ RSpec.describe 'UserSessions', type: :system do
         fill_in 'Password', with: 'wrongpassword'
         click_button 'Login'
         expect(page).to have_current_path login_path
-			  expect(current_path).to eq login_path
+        expect(page).to have_current_path login_path, ignore_query: true
       end
     end
   end
@@ -38,7 +38,7 @@ RSpec.describe 'UserSessions', type: :system do
       it 'ログアウト処理が成功する' do
         click_link 'Logout'
         expect(page).to have_content 'Logged out'
-			  expect(current_path).to eq root_path
+        expect(page).to have_current_path root_path, ignore_query: true
       end
     end
   end

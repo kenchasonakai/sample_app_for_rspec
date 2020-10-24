@@ -12,6 +12,7 @@ RSpec.describe "Users", type: :system do
 					fill_in 'Password confirmation', with: user.password
 					click_button 'SignUp'
 					expect(page).to have_content 'User was successfully created.'
+			    expect(current_path).to eq login_path
 				end
       end
 
@@ -24,6 +25,7 @@ RSpec.describe "Users", type: :system do
 					fill_in 'Password confirmation', with: user.password
 					click_button 'SignUp'
 					expect(page).to have_content "Email can't be blank"
+			    expect(current_path).to eq users_path
 				end
       end
 
@@ -37,6 +39,7 @@ RSpec.describe "Users", type: :system do
 					fill_in 'Password confirmation', with: user.password
 					click_button 'SignUp'
 					expect(page).to have_content "Email has already been taken"
+			    expect(current_path).to eq users_path
 				end
       end
     end
@@ -46,7 +49,8 @@ RSpec.describe "Users", type: :system do
 				let(:user) { create(:user) }
         	it 'マイページへのアクセスが失敗する' do
 					  visit user_path(user)
-					  expect(page).to have_current_path login_path
+					  expect(page).to have_content "Login required"
+			      expect(current_path).to eq login_path
 				end
       end
 		end
@@ -65,6 +69,7 @@ RSpec.describe "Users", type: :system do
 					fill_in "Password confirmation", with: "pass"
 					click_button "Update"
 					expect(page).to have_content "User was successfully updated."
+			    expect(current_path).to eq user_path(user)
 				end
       end
 
@@ -78,6 +83,7 @@ RSpec.describe "Users", type: :system do
 					fill_in "Password confirmation", with: "pass"
 					click_button "Update"
 					expect(page).to have_content "Email can't be blank"
+			    expect(current_path).to eq user_path(user)
 				end
       end
 
@@ -92,6 +98,7 @@ RSpec.describe "Users", type: :system do
 					fill_in "Password confirmation", with: "pass"
 					click_button "Update"
 					expect(page).to have_content "Email has already been taken"
+			    expect(current_path).to eq user_path(user)
 				end
       end
 
@@ -101,7 +108,8 @@ RSpec.describe "Users", type: :system do
 				before { login(user) }
         it '編集ページへのアクセスが失敗する' do
 					visit edit_user_path(another_user)
-					expect(page).to have_current_path user_path(user)
+					expect(page).to have_content "Forbidden access."
+			    expect(current_path).to eq user_path(user)
 				end
       end
     end

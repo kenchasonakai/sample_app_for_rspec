@@ -6,7 +6,6 @@ AllCops:
     - 'vendor/**/*'
     - 'db/**/*'
     - 'bin/**/*'
-#    - 'spec/**/*'
     - 'node_modules/**/*'
   DisplayCopNames: true
 

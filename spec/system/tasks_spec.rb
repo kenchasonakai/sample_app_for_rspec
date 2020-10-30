@@ -61,11 +61,8 @@ RSpec.describe 'Tasks', type: :system do
         fill_in 'Content', with: task.content
         click_button 'Create Task'
         visit tasks_path
-        within first('tbody tr') do
-          page.accept_confirm do
-            click_link 'Destroy'
-          end
-        end
+				click_link 'Destroy'
+        expect(page.accept_confirm).to eq 'Are you sure?'
         expect(page).to have_content 'Task was successfully destroyed.'
         expect(page).to have_current_path tasks_path
       end

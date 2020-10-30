@@ -64,7 +64,6 @@ RSpec.describe 'Users', type: :system do
     describe 'ユーザー編集' do
       context 'フォームの入力値が正常' do
         let(:user) { create(:user) }
-
         before { login(user) }
 
         it 'ユーザーの編集が成功する' do
@@ -80,7 +79,6 @@ RSpec.describe 'Users', type: :system do
 
       context 'メールアドレスが未入力' do
         let(:user) { create(:user) }
-
         before { login(user) }
 
         it 'ユーザーの編集が失敗する' do
@@ -97,7 +95,6 @@ RSpec.describe 'Users', type: :system do
       context '登録済のメールアドレスを使用した場合' do
         let(:user) { create(:user) }
         let(:another_user) { create(:another_user) }
-
         before { login(user) }
 
         it 'ユーザーの編集が失敗する' do
@@ -114,7 +111,6 @@ RSpec.describe 'Users', type: :system do
       context '他ユーザーの編集ページにアクセスしようとした場合' do
         let(:user) { create(:user) }
         let(:another_user) { create(:another_user) }
-
         before { login(user) }
 
         it '編集ページへのアクセスが失敗する' do

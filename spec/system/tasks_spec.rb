@@ -11,13 +11,13 @@ RSpec.describe 'Tasks', type: :system do
     it 'タスクの新規作成画面に遷移できないこと' do
       visit new_task_path
       expect(page).to have_content 'Login required'
-      expect(page).to have_current_path login_path, ignore_query: true
+      expect(page).to have_current_path login_path
     end
 
     it 'タスクの編集画面に遷移できないこと' do
       visit edit_task_path(task)
       expect(page).to have_content 'Login required'
-      expect(page).to have_current_path login_path, ignore_query: true
+      expect(page).to have_current_path login_path
     end
   end
 
@@ -33,7 +33,7 @@ RSpec.describe 'Tasks', type: :system do
         fill_in 'Deadline', with: DateTime.new(2020, 10, 31, 10, 00)
         click_button 'Create Task'
         expect(page).to have_content 'Task was successfully created.'
-        expect(page).to have_current_path task_path(1), ignore_query: true
+        expect(page).to have_current_path task_path(1)
       end
 
       it '新規作成したタスクがユーザーマイページに表示されること' do
@@ -43,7 +43,7 @@ RSpec.describe 'Tasks', type: :system do
         click_button 'Create Task'
         visit user_path(user)
         expect(page).to have_content 'first_title'
-        expect(page).to have_current_path user_path(user), ignore_query: true
+        expect(page).to have_current_path user_path(user)
       end
 
       it 'タスクの編集が出来ること' do
@@ -52,7 +52,7 @@ RSpec.describe 'Tasks', type: :system do
         fill_in 'Content', with: 'update_content'
         click_button 'Update Task'
         expect(page).to have_content 'Task was successfully updated.'
-        expect(page).to have_current_path task_path(another_task), ignore_query: true
+        expect(page).to have_current_path task_path(another_task)
       end
 
       it 'タスクの削除が出来ること' do
@@ -67,7 +67,7 @@ RSpec.describe 'Tasks', type: :system do
           end
         end
         expect(page).to have_content 'Task was successfully destroyed.'
-        expect(page).to have_current_path tasks_path, ignore_query: true
+        expect(page).to have_current_path tasks_path
       end
     end
 
@@ -78,7 +78,7 @@ RSpec.describe 'Tasks', type: :system do
         fill_in 'Content', with: 'content'
         click_button 'Create Task'
         expect(page).to have_content "Title can't be blank"
-        expect(page).to have_current_path tasks_path, ignore_query: true
+        expect(page).to have_current_path tasks_path
       end
 
       it 'タスクの編集に失敗すること' do
@@ -87,14 +87,14 @@ RSpec.describe 'Tasks', type: :system do
         fill_in 'Content', with: 'update_content'
         click_button 'Update Task'
         expect(page).to have_content "Title can't be blank"
-        expect(page).to have_current_path task_path(another_task), ignore_query: true
+        expect(page).to have_current_path task_path(another_task)
       end
 
       describe '他のユーザーのタスクを操作出来ないこと' do
         it '他のユーザーのタスクの編集ページに遷移できないこと' do
           visit edit_task_path(another_user_task)
           expect(page).to have_content 'Forbidden access.'
-          expect(page).to have_current_path root_path, ignore_query: true
+          expect(page).to have_current_path root_path
         end
       end
     end

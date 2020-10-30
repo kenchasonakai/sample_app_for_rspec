@@ -29,7 +29,7 @@ RSpec.describe 'Tasks', type: :system do
         visit new_task_path
         fill_in 'Title', with: 'task_title'
         fill_in 'Content', with: 'task_content'
-        select 'doing', from: 'Status'
+        select :doing, from: 'Status'
         fill_in 'Deadline', with: DateTime.new(2020, 10, 31, 10, 00)
         click_button 'Create Task'
         expect(page).to have_content 'Task was successfully created.'

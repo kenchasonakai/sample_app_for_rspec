@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Tasks', type: :system do
   let(:user) { create(:user) }
   let(:task) { create(:task, user: user) }
-  let(:another_user) { create(:user, email: 'another_user@example.com', password: 'password', password_confirmation: 'password') }
+  let(:another_user) { create(:user, email: 'another_user@example.com') }
   let(:another_task) { create(:task, title: 'another_title', content: 'another_content', user: user) }
   let(:another_user_task) { create(:task, title: 'another_user_title', content: 'another_user_content', user: another_user) }
 

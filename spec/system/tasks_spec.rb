@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Tasks', type: :system do
-  let(:user) { create(:user) }
-  let(:task) { create(:task, user: user) }
+  let!(:user) { create(:user) }
+  let!(:task) { create(:task, user: user) }
   let(:another_user) { create(:user, email: 'another_user@example.com') }
   let(:another_task) { create(:task, title: 'another_title', content: 'another_content', user: user) }
   let(:another_user_task) { create(:task, title: 'another_user_title', content: 'another_user_content', user: another_user) }
@@ -56,10 +56,6 @@ RSpec.describe 'Tasks', type: :system do
       end
 
       it 'タスクの削除が出来ること' do
-        visit new_task_path
-        fill_in 'Title', with: task.title
-        fill_in 'Content', with: task.content
-        click_button 'Create Task'
         visit tasks_path
 				click_link 'Destroy'
         expect(page.accept_confirm).to eq 'Are you sure?'

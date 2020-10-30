@@ -57,7 +57,7 @@ RSpec.describe 'Tasks', type: :system do
 
       it 'タスクの削除が出来ること' do
         visit tasks_path
-				click_link 'Destroy'
+        click_link 'Destroy'
         expect(page.accept_confirm).to eq 'Are you sure?'
         expect(page).to have_content 'Task was successfully destroyed.'
         expect(page).to have_current_path tasks_path

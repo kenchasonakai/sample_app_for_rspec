@@ -31,7 +31,6 @@ RSpec.describe 'UserSessions', type: :system do
   describe 'ログイン後' do
     context 'ログアウトボタンをクリック' do
       let(:user) { create(:user) }
-
       before { login(user) }
 
       it 'ログアウト処理が成功する' do

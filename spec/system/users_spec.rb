@@ -13,7 +13,7 @@ RSpec.describe 'Users', type: :system do
           fill_in 'Password confirmation', with: user.password
           click_button 'SignUp'
           expect(page).to have_content 'User was successfully created.'
-          expect(page).to have_current_path login_path, ignore_query: true
+          expect(page).to have_current_path login_path
         end
       end
 
@@ -27,7 +27,7 @@ RSpec.describe 'Users', type: :system do
           fill_in 'Password confirmation', with: user.password
           click_button 'SignUp'
           expect(page).to have_content "Email can't be blank"
-          expect(page).to have_current_path users_path, ignore_query: true
+          expect(page).to have_current_path users_path
         end
       end
 
@@ -42,7 +42,7 @@ RSpec.describe 'Users', type: :system do
           fill_in 'Password confirmation', with: user.password
           click_button 'SignUp'
           expect(page).to have_content 'Email has already been taken'
-          expect(page).to have_current_path users_path, ignore_query: true
+          expect(page).to have_current_path users_path
         end
       end
     end
@@ -54,7 +54,7 @@ RSpec.describe 'Users', type: :system do
         it 'マイページへのアクセスが失敗する' do
           visit user_path(user)
           expect(page).to have_content 'Login required'
-          expect(page).to have_current_path login_path, ignore_query: true
+          expect(page).to have_current_path login_path
         end
       end
     end
@@ -73,7 +73,7 @@ RSpec.describe 'Users', type: :system do
           fill_in 'Password confirmation', with: 'pass'
           click_button 'Update'
           expect(page).to have_content 'User was successfully updated.'
-          expect(page).to have_current_path user_path(user), ignore_query: true
+          expect(page).to have_current_path user_path(user)
         end
       end
 
@@ -88,7 +88,7 @@ RSpec.describe 'Users', type: :system do
           fill_in 'Password confirmation', with: 'pass'
           click_button 'Update'
           expect(page).to have_content "Email can't be blank"
-          expect(page).to have_current_path user_path(user), ignore_query: true
+          expect(page).to have_current_path user_path(user)
         end
       end
 
@@ -104,7 +104,7 @@ RSpec.describe 'Users', type: :system do
           fill_in 'Password confirmation', with: 'pass'
           click_button 'Update'
           expect(page).to have_content 'Email has already been taken'
-          expect(page).to have_current_path user_path(user), ignore_query: true
+          expect(page).to have_current_path user_path(user)
         end
       end
 
@@ -116,7 +116,7 @@ RSpec.describe 'Users', type: :system do
         it '編集ページへのアクセスが失敗する' do
           visit edit_user_path(another_user)
           expect(page).to have_content 'Forbidden access.'
-          expect(page).to have_current_path user_path(user), ignore_query: true
+          expect(page).to have_current_path user_path(user)
         end
       end
     end

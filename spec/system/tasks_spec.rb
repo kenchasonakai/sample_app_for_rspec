@@ -33,7 +33,6 @@ RSpec.describe 'Tasks', type: :system do
         fill_in 'Deadline', with: DateTime.new(2020, 10, 31, 10, 00)
         click_button 'Create Task'
         expect(page).to have_content 'Task was successfully created.'
-        expect(page).to have_current_path task_path(2)
       end
 
       it '新規作成したタスクがユーザーマイページに表示されること' do
